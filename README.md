@@ -11,11 +11,6 @@ AUTOMAHOME is an Arduino-based intelligent home automation system that integrate
 - **Smart Clothes Drying Detection** — automatic clothes rack control based on rain sensor readings
 - **Human-sensing Outdoor Lights** — ultrasonic-based presence detection that controls an outdoor LED
 
-All three subsystems run in parallel without blocking each other, using non-blocking millis() timers throughout.
-
-The sketch folder and .ino file must share the same name (AUTOMAHOME) for the Arduino IDE to open it correctly.
-
----
 
 ## Hardware Requirements
 
