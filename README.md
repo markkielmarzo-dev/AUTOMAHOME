@@ -67,54 +67,6 @@ Install all libraries through Arduino IDE Library Manager (Sketch → Include Li
 
 ## How to Run the Project
 
-### Step 1 — Install Arduino IDE
-
-Download and install the Arduino IDE from https://www.arduino.cc/en/software. Version 1.8.x or 2.x both work.
-
-### Step 2 — Install Required Libraries
-
-1. Open Arduino IDE.
-2. Go to Sketch → Include Library → Manage Libraries.
-3. Search for and install:
-   - LiquidCrystal I2C by Frank de Brabander
-   - Keypad by Mark Stanley & Alexander Brevig
-
-### Step 3 — Open the Sketch
-
-1. In Arduino IDE, go to File → Open.
-2. Navigate to the AUTOMAHOME/AUTOMAHOME/ folder.
-3. Select AUTOMAHOME.ino and click Open.
-
-### Step 4 — Connect the Hardware
-
-Wire all components to the Arduino Uno according to the Pin Mapping table above. Double-check servo power — if servos cause resets, power them from an external 5V supply with a shared ground to the Arduino.
-
-### Step 5 — Find the I2C Address of Your LCD
-
-If the LCD does not display anything after uploading, your I2C module may use address 0x27 instead of 0x3F. To check:
-
-1. Upload the I2C scanner sketch (available at https://playground.arduino.cc/Main/I2cScanner/).
-2. Open Serial Monitor at 9600 baud.
-3. Note the address shown and update this line in AUTOMAHOME.ino:
-
-```cpp
-LiquidCrystal_I2C lcd(0x3F, 16, 2);  // change 0x3F to your address
-```
-
-### Step 6 — Select Board and Port
-
-1. Go to Tools → Board and select Arduino Uno.
-2. Go to Tools → Port and select the COM port your Arduino is connected to (e.g. COM3 on Windows, /dev/ttyUSB0 on Linux/Mac).
-
-### Step 7 — Upload
-
-Click the Upload button (→ arrow icon) or press Ctrl + U. Wait for "Done uploading." to appear in the status bar.
-
-### Step 8 — Test the System
-
-Once uploaded, the LCD will show AUTOMAHOME for 1.5 seconds then switch to Enter Password.
-
----
 
 ## Keypad Controls
 
@@ -150,7 +102,6 @@ Once uploaded, the LCD will show AUTOMAHOME for 1.5 seconds then switch to Enter
 - Detection threshold can be adjusted by changing DETECT_DISTANCE in the source code.
 
 
-
 ## Customization
 
 | What to change | Where in the code |
@@ -163,24 +114,3 @@ Once uploaded, the LCD will show AUTOMAHOME for 1.5 seconds then switch to Enter
 | LCD I2C address | LiquidCrystal_I2C lcd(0x3F, 16, 2); |
 
 
-
-## Troubleshooting
-
-**LCD shows nothing**
-The I2C address may be 0x27 instead of 0x3F. Run an I2C scanner sketch to confirm and update the address in the code.
-
-**Servo jitters or Arduino resets**
-Servos draw more current than the Arduino's 5V pin can provide. Power them from an external 5V supply with a common ground to the Arduino.
-
-**Rain sensor always reads wet**
-Check the sensitivity potentiometer on the rain sensor module and adjust it with a small screwdriver until it correctly distinguishes wet from dry.
-
-**Ultrasonic always reads 999**
-Verify TRIG is on pin 13 and ECHO is on A0. Ensure nothing is blocking the sensor face and there are no loose connections.
-
-**Keypad keys not registering**
-Confirm row pins (9, 8, 7, 6) and column pins (5, 4, 3, 2) match the physical keypad wiring. Some keypads have rows and columns swapped — try reversing the row/column pin arrays in the code if needed.
-
----
-
-*AUTOMAHOME — Arduino Intelligent Home Automation System*
